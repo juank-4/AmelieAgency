@@ -33,14 +33,43 @@ body{font-family:'Poppins',sans-serif;background:var(--bl);color:var(--td);line-
 }
 
 /* Agrega esta nueva regla aquí abajo para controlar el tamaño del logo */
+/* ====== TAMAÑO DEL LOGO CORREGIDO ====== */
 .nav-logo-img {
-  height: 62px; /* Tamaño más visible en pantallas grandes */
+  height: 65px; 
   width: auto;
-  transition: height .3s ease;
+  transform: scale(2.6); /* MAGIA: Hace zoom a las letras ignorando el espacio en blanco */
+  transform-origin: left center; /* Crece hacia la derecha sin salirse del menú */
+  transition: all .3s ease;
 }
 #nav.s .nav-logo-img {
-  height: 50px; /* Se reduce elegantemente al hacer scroll */
+  height: 55px;
+  transform: scale(2.2);
 }
+
+/* ====== EFECTOS PROFESIONALES (NUEVO) ====== */
+/* 1. Orbes flotantes en el inicio (movimiento suave de fondo) */
+@keyframes floatOrb {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+.o1 { animation: floatOrb 9s ease-in-out infinite; }
+.o2 { animation: floatOrb 12s ease-in-out infinite reverse; }
+
+/* 2. Texto con degradado de lujo en el Hero */
+.htitle em {
+  background: linear-gradient(135deg, var(--p), #d9488a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* 3. Sombras de "flotación" en los contenedores al pasar el mouse */
+.sc:hover, .bc:hover, .cf:hover, .ac:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 45px rgba(122,31,104,.12);
+  border-color: rgba(122,31,104,.25);
+}
+.cf, .ac { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
 .nlogo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--p);text-decoration:none;letter-spacing:-.02em;flex-shrink:0}
 .nlogo span{font-weight:400;font-style:italic;color:var(--pm)}
 .nlinks{display:flex;align-items:center;gap:2px}
@@ -480,9 +509,9 @@ footer{background:var(--td);padding:56px 5% 36px}
     <div class="ftop">
       <div>
         <a>
-          <img src="Logo_Amelie_Agency.png" alt="Amelie Agency" style="height: 85px; width: auto;">
+          <img src="Logo_Amelie_Agency.png" alt="Amelie Agency" style="height: 90px; width: auto; transform: scale(2.2); transform-origin: left center;">
         </a>
-        <p class="ftag">Tu marca, tu historia. Transformamos esfuerzo en marcas que perduran.</p>
+        <p class="ftag" style="color:var(--w)">Tu marca, tu historia. Transformamos esfuerzo en marcas que perduran.</p>
         <a href="mailto:amelie.agencyy@gmail.com" class="femail">amelie.agencyy@gmail.com</a>
         <div class="fsoc">
           <a href="https://www.instagram.com/p/DZ8jHQnDY9O/?igsh=Mm0xbWF3bmkydXFm" target="_blank" rel="noopener noreferrer" class="sb" title="Instagram" aria-label="Instagram">
@@ -492,7 +521,7 @@ footer{background:var(--td);padding:56px 5% 36px}
       </div>
       <div class="fctab">
         <p class="fctabl">¿Listos para el cambio?</p>
-        <p class="fctat">Tu marca puede comunicar exactamente lo que vales.</p>
+        <p class="fctat" >Tu marca puede comunicar exactamente lo que vales.</p>
         <a href="#contacto" class="fctal">Comenzar ahora →</a>
       </div>
     </div>
@@ -522,14 +551,22 @@ document.addEventListener('click',function(e){
 });
 
 // Animaciones de scroll (Intactas)
+// Animaciones de scroll (Nivel Agencia Pro)
 var obs=new IntersectionObserver(function(en){
   en.forEach(function(e){
-    if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';obs.unobserve(e.target);}
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0)';
+      obs.unobserve(e.target);
+    }
   });
-},{threshold:.1});
-document.querySelectorAll('.sc,.tc,.bc').forEach(function(el){
-  el.style.opacity='0';el.style.transform='translateY(18px)';
-  el.style.transition='opacity .55s ease,transform .55s ease';
+},{threshold:.12});
+
+// Le aplicamos el efecto de aparición flotante a MUCHOS más elementos de la página
+document.querySelectorAll('.sc, .tc, .bc, .ac, .cf, .ag div, .cg div').forEach(function(el){
+  el.style.opacity='0';
+  el.style.transform='translateY(30px)';
+  el.style.transition='opacity .7s cubic-bezier(0.2, 0.8, 0.2, 1), transform .7s cubic-bezier(0.2, 0.8, 0.2, 1)';
   obs.observe(el);
 });
 </script>
