@@ -217,7 +217,9 @@ footer{background:var(--td);padding:56px 5% 36px}
 
 <!-- NAVBAR -->
 <nav id="nav">
-  <a href="#" class="nlogo">Amelie<span>Agency</span></a>
+  <a>
+    <img src="Amelie_Agency_Logo.webp" alt="Amelie Agency" style="height: 45px; width: auto;">
+  </a>
   <div class="nlinks">
     <a href="#nosotros" class="nl">Nosotros</a>
     <a href="#servicios" class="nl">Servicios</a>
@@ -418,7 +420,7 @@ footer{background:var(--td);padding:56px 5% 36px}
           <div class="cii"><div class="cico">✓</div><span>Primera asesoría sin costo</span></div>
         </div>
       </div>
-      <form class="cf" id="form-contacto" action="https://formspree.io/f/TU_CODIGO_AQUI" method="POST">
+      <form class="cf" id="form-contacto" action="https://formspree.io/f/mjgqknav" method="POST">
         <div class="fr">
           <div class="fg">
             <label class="fl">Nombre completo<span class="req"> *</span></label>
@@ -467,9 +469,11 @@ footer{background:var(--td);padding:56px 5% 36px}
   <div class="fi2">
     <div class="ftop">
       <div>
-        <p class="fbrand">Amelie<span>Agency</span></p>
+        <a>
+          <img src="Amelie_Agency_Logo.webp" alt="Amelie Agency" style="height: 45px; width: auto;">
+        </a>
         <p class="ftag">Tu marca, tu historia. Transformamos esfuerzo en marcas que perduran.</p>
-        <a href="mailto:hola@amelieagency.com" class="femail">amelie.agencyy@gmail.com</a>
+        <a href="https://www.instagram.com/p/DZ8jHQnDY9O/?igsh=Mm0xbWF3bmkydXFm" class="femail">amelie.agencyy@gmail.com</a>
         <div class="fsoc">
           <a href="#" class="sb" title="Instagram" aria-label="Instagram">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
@@ -506,13 +510,39 @@ document.addEventListener('click',function(e){
   var nav=document.getElementById('nav'),menu=document.getElementById('mmenu');
   if(!nav.contains(e.target)&&!menu.contains(e.target)) closeM();
 });
-function handleSub(btn){
-  btn.disabled=true;btn.textContent='Enviando...';
-  setTimeout(function(){
-    document.getElementById('smsg').style.display='block';
-    btn.textContent='✓ Mensaje enviado';btn.style.background='#5a1750';
-  },900);
-}
+var form = document.getElementById("form-contacto");
+var btn = form.querySelector(".fbt");
+var smsg = document.getElementById("smsg");
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault(); // Evita que la página salte a Formspree
+  
+  btn.disabled = true;
+  btn.textContent = "Enviando...";
+
+  var data = new FormData(event.target);
+  
+  fetch(event.target.action, {
+    method: form.method,
+    body: data,
+    headers: {
+        'Accept': 'application/json'
+    }
+  }).then(response => {
+    if (response.ok) {
+      smsg.style.display = "block";
+      btn.textContent = "✓ Mensaje enviado";
+      btn.style.background = "#5a1750";
+      form.reset(); // Limpia los campos
+    } else {
+      btn.disabled = false;
+      btn.textContent = "Error al enviar. Intenta de nuevo.";
+    }
+  }).catch(error => {
+    btn.disabled = false;
+    btn.textContent = "Error de red.";
+  });
+});
 var obs=new IntersectionObserver(function(en){
   en.forEach(function(e){
     if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';obs.unobserve(e.target);}
