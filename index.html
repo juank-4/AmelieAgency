@@ -21,7 +21,7 @@ body{font-family:'Poppins',sans-serif;background:var(--bl);color:var(--td);line-
 #nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 5%;height:68px;
+  padding:0 5%;height:82px; /* Aumentado de 68px a 82px para dar aire al logo cuadrado */
   background:transparent;border-bottom:1px solid transparent;
   transition:background .4s,border-color .4s,height .3s;
 }
@@ -29,7 +29,17 @@ body{font-family:'Poppins',sans-serif;background:var(--bl);color:var(--td);line-
   background:rgba(247,244,240,.88);
   backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
   border-bottom:1px solid rgba(122,31,104,.1);
-  height:60px;
+  height:68px; /* Aumentado de 60px a 68px al hacer scroll */
+}
+
+/* Agrega esta nueva regla aquí abajo para controlar el tamaño del logo */
+.nav-logo-img {
+  height: 62px; /* Tamaño más visible en pantallas grandes */
+  width: auto;
+  transition: height .3s ease;
+}
+#nav.s .nav-logo-img {
+  height: 50px; /* Se reduce elegantemente al hacer scroll */
 }
 .nlogo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--p);text-decoration:none;letter-spacing:-.02em;flex-shrink:0}
 .nlogo span{font-weight:400;font-style:italic;color:var(--pm)}
@@ -218,7 +228,7 @@ footer{background:var(--td);padding:56px 5% 36px}
 <!-- NAVBAR -->
 <nav id="nav">
   <a>
-    <img src="Amelie_Agency.webp" alt="Amelie Agency" style="height: 45px; width: auto;">
+    <img src="Logo_Amelie_Agency.png" alt="Amelie Agency" class="nav-logo-img">
   </a>
   <div class="nlinks">
     <a href="#nosotros" class="nl">Nosotros</a>
@@ -310,35 +320,35 @@ footer{background:var(--td);padding:56px 5% 36px}
       <p class="sd" style="max-width:340px">Cinco pilares diseñados para transformar tu emprendimiento en una marca que conecta, genera confianza y crece.</p>
     </div>
     <div class="sg">
-      <div class="sc">
+      <div class="sc ft">
         <span class="snum">01</span>
-        <div class="si2"><span>✦</span></div>
+        <div class="si2"><span style="color:var(--w)">✦</span></div>
         <p class="sname">Identidad Visual</p>
-        <p class="sdesc2">Logotipo, paleta cromática, tipografías y sistema de marca que te hacen reconocible a primera vista.</p>
+        <p class="sdesc2" style="color:var(--w)">Logotipo, paleta cromática, tipografías y sistema de marca que te hacen reconocible a primera vista.</p>
       </div>
       <div class="sc ft">
         <span class="snum">02</span>
         <div class="si2"><span style="color:var(--w)">◈</span></div>
         <p class="sname">Estrategia de Branding</p>
-        <p class="sdesc2">Definimos tu posicionamiento, propósito y voz para que cada mensaje conecte con las personas correctas.</p>
+        <p class="sdesc2" style="color:var(--w)">Definimos tu posicionamiento, propósito y voz para que cada mensaje conecte con las personas correctas.</p>
       </div>
-      <div class="sc">
+      <div class="sc ft">
         <span class="snum">03</span>
-        <div class="si2"><span>◎</span></div>
+        <div class="si2"><span style="color:var(--w)">◎</span></div>
         <p class="sname">Marketing Digital y Redes</p>
-        <p class="sdesc2">Estrategias de contenido y gestión de redes sociales que amplifican tu marca y atraen clientes.</p>
+        <p class="sdesc2" style="color:var(--w)">Estrategias de contenido y gestión de redes sociales que amplifican tu marca y atraen clientes.</p>
       </div>
-      <div class="sc">
+      <div class="sc ft">
         <span class="snum">04</span>
-        <div class="si2"><span>⬡</span></div>
+        <div class="si2"><span style="color:var(--w)">⬡</span></div>
         <p class="sname">Presencia Digital</p>
-        <p class="sdesc2">Sitio web y activos digitales coherentes con tu marca para que seas encontrado y recordado.</p>
+        <p class="sdesc2" style="color:var(--w)">Sitio web y activos digitales coherentes con tu marca para que seas encontrado y recordado.</p>
       </div>
-      <div class="sc">
+      <div class="sc ft">
         <span class="snum">05</span>
-        <div class="si2"><span>◇</span></div>
+        <div class="si2"><span style="color:var(--w)">◇</span></div>
         <p class="sname">Asesorías Personalizadas</p>
-        <p class="sdesc2">Sesiones individuales para emprendedores que necesitan orientación estratégica en su marca o negocio.</p>
+        <p class="sdesc2" style="color:var(--w)">Sesiones individuales para emprendedores que necesitan orientación estratégica en su marca o negocio.</p>
       </div>
     </div>
   </div>
@@ -353,27 +363,27 @@ footer{background:var(--td);padding:56px 5% 36px}
     </div>
     <div class="bg2">
       <div class="bc">
-        <span class="bicon">🎯</span>
+        <span class="bicon"></span>
         <p class="btitle">Enfoque en emprendedores</p>
         <p class="bdesc">Entendemos los desafíos reales de las PyMES y diseñamos soluciones pensadas para tu realidad.</p>
       </div>
       <div class="bc">
-        <span class="bicon">🤝</span>
+        <span class="bicon"></span>
         <p class="btitle">Atención cercana y personalizada</p>
         <p class="bdesc">No eres un número más. Acompañamos cada proyecto como si fuera propio, desde el inicio hasta el final.</p>
       </div>
       <div class="bc">
-        <span class="bicon">💡</span>
+        <span class="bicon"></span>
         <p class="btitle">Conocimiento digital actual</p>
         <p class="bdesc">Nuestro enfoque juvenil nos permite comprender las tendencias digitales y las nuevas formas de comunicación.</p>
       </div>
       <div class="bc">
-        <span class="bicon">💰</span>
+        <span class="bicon"></span>
         <p class="btitle">Precios accesibles</p>
         <p class="bdesc">Calidad profesional con tarifas pensadas para emprendedores que están construyendo su camino.</p>
       </div>
       <div class="bc">
-        <span class="bicon">🚀</span>
+        <span class="bicon"></span>
         <p class="btitle">Acompañamiento completo</p>
         <p class="bdesc">Estamos contigo en cada etapa: estrategia, diseño, implementación y seguimiento continuo.</p>
       </div>
@@ -470,7 +480,7 @@ footer{background:var(--td);padding:56px 5% 36px}
     <div class="ftop">
       <div>
         <a>
-          <img src="Amelie_Agency.webp" alt="Amelie Agency" style="height: 45px; width: auto;">
+          <img src="Logo_Amelie_Agency.png" alt="Amelie Agency" style="height: 85px; width: auto;">
         </a>
         <p class="ftag">Tu marca, tu historia. Transformamos esfuerzo en marcas que perduran.</p>
         <a href="mailto:amelie.agencyy@gmail.com" class="femail">amelie.agencyy@gmail.com</a>
@@ -481,13 +491,13 @@ footer{background:var(--td);padding:56px 5% 36px}
         </div>
       </div>
       <div class="fctab">
-        <p class="fctabl">¿Lista para el cambio?</p>
+        <p class="fctabl">¿Listos para el cambio?</p>
         <p class="fctat">Tu marca puede comunicar exactamente lo que vales.</p>
         <a href="#contacto" class="fctal">Comenzar ahora →</a>
       </div>
     </div>
     <div class="fbot">
-      <p class="fcopy">© 2025 Amelie Agency. Todos los derechos reservados.</p>
+      <p class="fcopy">© 2026 Amelie Agency. Todos los derechos reservados.</p>
       <p class="fcopy">Tu esfuerzo merece una marca a su altura.</p>
     </div>
   </div>
