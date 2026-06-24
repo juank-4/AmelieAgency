@@ -250,11 +250,184 @@ footer{background:var(--td);padding:56px 5% 36px}
   .hscroll{animation:none}
   *{transition:none !important}
 }
+/* ========================================================
+   PAQUETE DE EFECTOS DE ALTA GAMA (AMELIE PRO)
+   ======================================================== */
+
+/* 1. CURSOR PERSONALIZADO (Solo en pantallas grandes) */
+@media (min-width: 901px) {
+  body, a, button, select, input, textarea, .sc, .bc, .tc {
+    cursor: none !important; /* Esconde el cursor por defecto */
+  }
+  .custom-cursor {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--p);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Evita que el cursor interfiera con los clics */
+    z-index: 9999;
+    transition: transform 0.1s ease, background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .custom-cursor.hover {
+    transform: translate(-50%, -50%) scale(1.6);
+    background-color: rgba(122, 31, 104, 0.12);
+    border-color: var(--pd);
+  }
+}
+@media (max-width: 900px) {
+  .custom-cursor { display: none; }
+}
+
+/* 2. CINTA DE TEXTO INFINITA (MARQUEE) */
+.marquee-container {
+  background: var(--px);
+  overflow: hidden;
+  padding: 16px 0;
+  border-top: 1px solid rgba(122, 31, 104, 0.1);
+  border-bottom: 1px solid rgba(122, 31, 104, 0.1);
+  display: flex;
+  white-space: nowrap;
+}
+.marquee-content {
+  display: inline-flex;
+  animation: marqueeLoop 28s linear infinite;
+}
+.marquee-content span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--p);
+  letter-spacing: 0.18em;
+  padding: 0 25px;
+}
+@keyframes marqueeLoop {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+/* 3. TARJETAS SÓLIDAS Y ULTRA DINÁMICAS (Reemplaza al Cristal) */
+/* Volvemos al fondo blanco limpio en todas las secciones */
+
+/* 4. DESTELLO DE LUZ EN BOTONES (Shine Effect) */
+.btnp, .fbt {
+  position: relative;
+  overflow: hidden;
+}
+.btnp::after, .fbt::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 30%;
+  height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.28), transparent);
+  transform: rotate(30deg);
+  animation: buttonShine 4.5s ease-in-out infinite;
+}
+@keyframes buttonShine {
+  0% { left: -60%; }
+  15% { left: 140%; }
+  100% { left: 140%; }
+}
+/* --- MAGIA PARA LAS TARJETAS DE SERVICIOS (.sc) --- */
+.sc {
+  /* Usamos una curva bezier para darle un efecto de "rebote" elástico */
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; 
+  position: relative;
+  z-index: 1;
+}
+
+.sc:hover {
+  transform: translateY(-16px) scale(1.05) !important; /* Salta hacia arriba y se agranda */
+  box-shadow: 0 35px 65px rgba(122, 31, 104, 0.18) !important; /* Sombra profunda del color de la marca */
+  border-color: var(--p) !important; /* El borde se pinta de morado */
+  z-index: 10;
+}
+
+/* El cuadrito del ícono también reacciona */
+.sc .si2 {
+  transition: all 0.4s ease !important;
+}
+.sc:hover .si2 {
+  transform: scale(1.15) rotate(8deg) !important; /* Se agranda y se inclina un poco */
+  background: var(--p) !important; /* El fondo del ícono se vuelve morado */
+}
+.sc:hover .si2 span {
+  color: var(--w) !important; /* El símbolo del ícono se vuelve blanco */
+}
+
+/* Excepción para la tarjeta que ya es morada por defecto (.sc.ft) */
+.sc.ft { 
+  background: var(--p) !important; 
+  border-color: var(--p) !important; 
+}
+.sc.ft:hover { 
+  box-shadow: 0 35px 65px rgba(122, 31, 104, 0.4) !important; /* Sombra más fuerte */
+  transform: translateY(-16px) scale(1.05) !important;
+}
+.sc.ft:hover .si2 {
+  background: var(--w) !important;
+}
+.sc.ft:hover .si2 span {
+  color: var(--p) !important;
+}
+/* =========================================
+   CORRECCIÓN: TEXTO OSCURO EN TESTIMONIOS
+   ========================================= */
+
+/* Opcional: Le damos el mismo efecto de rebote a los testimonios para mantener coherencia */
+.tc {
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+.tc:hover {
+  transform: translateY(-12px) scale(1.03) !important;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15) !important;
+}
+/* =========================================
+   CORRECCIÓN: CÍRCULO DE AVATAR VISIBLE
+   ========================================= */
+.tav,.tav span, .tav div {
+  background: var(--p) !important; /* Le da el color morado principal de la agencia */
+  color: #ffffff!important;
+  font-weight: bold !important; /* Letra en blanco puro para que resalte */
+  box-shadow: 0 4px 10px rgba(122, 31, 104, 0.2); /* Una sombrita sutil para que se vea premium */
+}
+/* ====== TARJETAS DE BENEFICIOS (Dinámicas) ====== */
+.bc {
+  background: var(--w) !important;
+  border-radius: var(--rlg);
+  padding: 30px 24px;
+  border: 1px solid var(--bd) !important;
+  /* Aplicamos la misma transición elástica que en servicios */
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  cursor: default;
+}
+
+.bc:hover {
+  /* Efecto de salto, zoom y sombra profunda */
+  transform: translateY(-16px) scale(1.05) !important;
+  box-shadow: 0 35px 65px rgba(122, 31, 104, 0.18) !important;
+  border-color: var(--p) !important;
+  z-index: 10;
+}
+
+.bicon {
+  font-size: 1.55rem;
+  margin-bottom: 14px;
+  display: block;
+  transition: transform 0.4s ease !important;
+}
+
+.bc:hover .bicon {
+  transform: scale(1.2) rotate(-5deg); /* El icono también se mueve un poco al pasar el mouse */
+}
 </style>
 </head>
 <body>
-
 <!-- NAVBAR -->
+ <div class="custom-cursor"></div>
 <nav id="nav">
   <a href="#inicio">
     <img src="Logo_Amelie_Agency.png" alt="Amelie Agency" class="nav-logo-img">
@@ -299,13 +472,18 @@ footer{background:var(--td);padding:56px 5% 36px}
 
 <!-- STRIP -->
 <div class="strip">
-  <div class="si"><span class="sn">+50</span><span>marcas transformadas</span></div>
   <div class="sdiv"></div>
   <div class="si"><span class="sn">5</span><span>servicios especializados</span></div>
   <div class="sdiv"></div>
   <div class="si"><span class="sn">&lt;24h</span><span>tiempo de respuesta</span></div>
   <div class="sdiv"></div>
   <div class="si"><span class="sn">100%</span><span>enfoque en PyMES</span></div>
+</div>
+<div class="marquee-container">
+  <div class="marquee-content">
+    <span>✦ BRANDING </span>5<span>✦ MARKETING DIGITAL </span><span>✦ IDENTIDAD VISUAL </span><span>✦ PRESENCIA DIGITAL </span><span>✦ ASESORÍA ESTRATÉGICA </span>
+    <span>✦ BRANDING </span><span>✦ MARKETING DIGITAL </span><span>✦ IDENTIDAD VISUAL </span><span>✦ PRESENCIA DIGITAL </span><span>✦ ASESORÍA ESTRATÉGICA </span>
+  </div>
 </div>
 
 <!-- S2: QUIÉNES SOMOS -->
@@ -569,6 +747,19 @@ document.querySelectorAll('.sc, .tc, .bc, .ac, .cf, .ag div, .cg div').forEach(f
   el.style.transition='opacity .7s cubic-bezier(0.2, 0.8, 0.2, 1), transform .7s cubic-bezier(0.2, 0.8, 0.2, 1)';
   obs.observe(el);
 });
+// Control del Cursor Personalizado
+var cc = document.querySelector('.custom-cursor');
+if (cc) {
+  document.addEventListener('mousemove', function(e) {
+    cc.style.left = e.clientX + 'px';
+    cc.style.top = e.clientY + 'px';
+  });
+  // Elementos que activan el zoom del cursor
+  document.querySelectorAll('a, button, select, input, textarea, .sc, .bc, .tc').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { cc.classList.add('hover'); });
+    el.addEventListener('mouseleave', function() { cc.classList.remove('hover'); });
+  });
+}
 </script>
 </body>
 </html>
