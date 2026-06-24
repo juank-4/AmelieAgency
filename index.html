@@ -134,8 +134,30 @@ section{padding:96px 5%}
 /* ABOUT */
 .about{background:var(--w)}
 .ag{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.ac{background:var(--bl);border-radius:var(--rlg);padding:44px 38px;border:1px solid var(--bd);position:relative;overflow:hidden}
-.ac::before{content:'\201C';font-family:'Playfair Display',serif;font-size:9rem;color:rgba(122,31,104,.07);position:absolute;top:-16px;left:14px;line-height:1;pointer-events:none}
+/* TARJETA DE "QUIÉNES SOMOS" DINÁMICA */
+.ac {
+  background: var(--w) !important; /* Pasamos a blanco sólido para que combine con el resto */
+  border-radius: var(--rlg);
+  padding: 44px 38px;
+  border: 1px solid var(--bd) !important;
+  position: relative;
+  overflow: hidden;
+  /* El secreto: la misma transición elástica que las otras tarjetas */
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.ac:hover {
+  /* Elevación y zoom al pasar el mouse */
+  transform: translateY(-16px) scale(1.02) !important;
+  box-shadow: 0 35px 65px rgba(122, 31, 104, 0.18) !important;
+  border-color: var(--p) !important;
+}
+/* ====== EFECTO PARA EL SELLO PYME ====== */
+/* Reemplaza .tu-clase-pymes por la clase que tenga tu cuadrito morado en el HTML */
+.ac:hover .tu-clase-pymes {
+  transform: scale(1.15) rotate(-5deg) !important; /* Crece y se inclina */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
 .am{font-family:'Poppins',sans-serif;font-style:italic;font-size:.91rem;color:var(--tm);line-height:1.8;margin-bottom:26px;position:relative}
 .atags{display:flex;gap:8px;flex-wrap:wrap}
 .tag{background:rgba(122,31,104,.08);color:var(--p);padding:5px 13px;border-radius:var(--rxl);font-family:'Montserrat',sans-serif;font-size:.71rem;font-weight:700;letter-spacing:.04em}
@@ -422,6 +444,22 @@ footer{background:var(--td);padding:56px 5% 36px}
 
 .bc:hover .bicon {
   transform: scale(1.2) rotate(-5deg); /* El icono también se mueve un poco al pasar el mouse */
+}
+/* 1. SELLO DINÁMICO AL PASAR EL MOUSE */
+.ac:hover .abadge {
+  transform: scale(1.15) rotate(-5deg) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* 2. EFECTO DE PULSACIÓN (OPCIONAL: le da vida propia al sello) */
+.abadge {
+  animation: pulseBadge 3s infinite ease-in-out;
+  transition: transform 0.4s ease; /* Para que la transición sea suave */
+}
+
+@keyframes pulseBadge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 </style>
 </head>
